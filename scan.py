@@ -5,6 +5,7 @@ import pandas as pd
 import subprocess
 
 dir_path = "/Users/cankale/Downloads/ilaclar"
+out_path = "/Users/cankale/code_projects/medicine_bot/medicines.csv"
 reader = easyocr.Reader(['en'])
 data = []
 
@@ -22,10 +23,10 @@ for file in os.listdir(dir_path):
     data.append({"medicine": medicine_name})
 
 df = pd.DataFrame(data)
-df.to_csv("medicines.csv", index=False)
+df.to_csv(out_path, index=False)
 print(df)
 
 # Push to GitHub
-subprocess.run(["git", "add", "medicines.csv"])
-subprocess.run(["git", "commit", "-m", "update medicines"])
-subprocess.run(["git", "push"])
+subprocess.run(["git", "add", "medicines.csv"], cwd="/Users/cankale/code_projects/medicine_bot")
+subprocess.run(["git", "commit", "-m", "update medicines"], cwd="/Users/cankale/code_projects/medicine_bot")
+subprocess.run(["git", "push"], cwd="/Users/cankale/code_projects/medicine_bot")
