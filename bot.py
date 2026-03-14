@@ -52,7 +52,7 @@ async def find(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if score > 40:
             row = df.iloc[idx]
             bbd = row['bbd'] if pd.notna(row['bbd']) and row['bbd'] != '' else 'Girilmedi'
-            output += f"💊 {row['medicine']} ({score:.2f}% match)\n📋 {row['tanim']}\n🔢 Adet: {int(row['adet'])}\n📅 BBD: {bbd}\n\n"
+            output += f"💊 {row['medicine']} (%{score:.2f} match)\n📋 {row['tanim']}\n🔢 Adet: {int(row['adet'])}\n📅 BBD: {bbd}\n\n"
     
     if output:
         await update.message.reply_text(output.strip())
