@@ -1,20 +1,51 @@
-medicine
-Bepanthol
-Sudocrem
-Parol
-Fucidine
-Cataflam
-Ibucold
-Terramycin
-Bactroban
-Thermo
-DUODERM
-STERiMAR
-Silverdin
-Deksketoprofen
-PHYTORELIEF
-Madecassol
-Fenistil
-Nurofen
-THERAFLU
-Dolgit
+medicine,adet,tanim,bbd
+APRANAX,1.0,Sistolik Böbrek Hastalığı,
+ARVELES,1.0,Asthma ve Bronkiltifli Bulgular,
+Aculamin,1.0,Aklanmin (Sedronil),
+Advantan,1.0,Lisinopril uso,
+Alchem,1.0,Kimyasal Tedavi,
+Amonyak,1.0,Nefes Dolu Hastalıklar,
+Autan,1.0,Uzuv ve Salgın,
+BEBEK BAKIM KREMİ,1.0,Cilt Problemleri Tedavisinde,
+Bactroban,1.0,Sırt eczemi tedavisinde.,
+Bepanthol,2.0,Kuru Kuru Agırlicısı,
+CRÈME,1.0,Yararlı Vücut Hücreleri,
+Cataflam,1.0,Psoriasis tedavisinde.,
+DEVA,1.0,Sporluk Tedavisi,
+DUODERM,1.0,Yara Doku Jeli,
+Deksketoprofen,0.0,,
+Dolgit,1.0,Kanser tedavisinde,
+Fenistil,1.0,Kafra ve Cilt Tedavisi,
+Fucidin,1.0,"Sütancı ve bakteriyel dermatoz.""",
+Fucidine,0.0,,
+Ibucold,1.0,Bakteri ve enfeksiyon,
+KAPSÜL,1.0,Ergen kalsiyum,
+MAXI COLD,1.0,Kafasızlık ve iltihabı azaltmak,
+Madecassol,0.0,,
+Madécassol,1.0,Klavozon fürat,
+Minoset,1.0,Soraya ve halsizlik,
+Miraderm,1.0,Hiperpigmentasyon tedavisinde,
+NAPROSYN,1.0,İyilik Kuvvetli Anti-inflamatuar,
+NUROFEN,1.0,Olgular için anti-inflamatuar.,
+Nurofen,0.0,,
+ORZAX,1.0,Kronik Nefritis,
+PHYTORELIEF,1.0,Bitki derived ilaç,
+PROSPAN,1.0,Prospan Sustensa,
+PROTEFIN,1.0,Hemofil-A,
+Parol,3.0,Hastalıkları Tedavi Edin,
+Ratiopharm,1.0,Hastalıktan,
+STERiMAR,1.0,Kanser tedavisinde,
+Silverdin,0.0,,
+Sudocrem,1.0,Cilt lekesine,
+Sulidin,1.0,Sulidin asit.,
+SİLERDİN,2.0,Uyuşukluk ve kıkırdaşılama,
+TERRAMYCIN,2.0,Kanser tedavisinde,
+THERAFLU,1.0,Kulak Ve Burun,
+Terramycin,0.0,,
+Thermo,0.0,,
+Thermo Sulidin,1.0,Kanser tedavisinde,
+VERDE,1.0,Hemostaz Ve,
+Wundspray,1.0,Kazandıkan hastalıkları,
+herz,1.0,İç Hastalıkları,
+İbuprofen,1.0,Aile Cilt Bulaşıklığı,
+İliadin,1.0,Nedeljenin ilacımı,
