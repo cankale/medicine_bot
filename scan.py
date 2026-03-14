@@ -15,6 +15,7 @@ for file in os.listdir(dir_path):
 
     result = reader.readtext(os.path.join(dir_path, file))
     texts = [text for (_, text, _) in result]
+    print(f"\n{file}: {texts}")
 
     # Get brand name
     name_response = ollama.chat(
