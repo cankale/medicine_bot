@@ -4,6 +4,7 @@ import requests
 import base64
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, ConversationHandler, MessageHandler, filters
 from telegram import Update
+from rapidfuzz import fuzz, process
 
 RAW_CSV_URL = "https://raw.githubusercontent.com/cankale/medicine_bot/main/medicines.csv"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
@@ -34,6 +35,30 @@ def push_csv(df):
             "sha": sha
         }
     )
+async def find(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Usage: /find <açıklama>")
+        return
+
+    df = get_csv()
+    query = " ".join(context.args).lower()
+    
+    # Match against tanim column
+    choices = df['tanim'].fillna('').tolist()
+    results = process.extract(query, choices, scorer=fuzz.partial_ratio, limit=3)
+    
+    output = ""
+    for match_str, score, idx in results:
+        if score > 40:
+            row = df.iloc[idx]
+            bbd = row['bbd'] if pd.notna(row['bbd']) and row['bbd'] != '' else 'Girilmedi'
+            output += f"💊 {row['medicine']} ({score}% eşleşme)\n📋 {row['tanim']}\n🔢 Adet: {int(row['adet'])}\n📅 BBD: {bbd}\n\n"
+    
+    if output:
+        await update.message.reply_text(output.strip())
+    else:
+        await update.message.reply_text("❌ Not found")
+
 
 async def check(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
@@ -121,4 +146,5 @@ delete_handler = ConversationHandler(
 app = ApplicationBuilder().token(os.environ.get("MEDICINE_BOT_API_KEY")).build()
 app.add_handler(CommandHandler("check", check))
 app.add_handler(delete_handler)
+app.add_handler(CommandHandler("find", find))
 app.run_polling()
