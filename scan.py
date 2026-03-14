@@ -1,20 +1,38 @@
-import easyocr
+import Vision
 import ollama
 import os
 import pandas as pd
 import subprocess
+from Foundation import NSURL
+
+def read_text_apple_vision(image_path):
+    input_url = NSURL.fileURLWithPath_(image_path)
+    
+    request = Vision.VNRecognizeTextRequest.alloc().init()
+    request.setRecognitionLevel_(Vision.VNRequestTextRecognitionLevelAccurate)
+    request.setUsesLanguageCorrection_(True)
+    
+    handler = Vision.VNImageRequestHandler.alloc().initWithURL_options_(input_url, None)
+    handler.performRequests_error_([request], None)
+    
+    texts = []
+    for observation in request.results():
+        texts.append(observation.topCandidates_(1)[0].string())
+    
+    return texts
 
 dir_path = "/Users/cankale/Downloads/ilaclar"
 out_path = "/Users/cankale/code_projects/medicine_bot/medicines.csv"
-reader = easyocr.Reader(['en'])
 data = []
 
 for file in os.listdir(dir_path):
-    if not file.endswith(('.jpg', '.jpeg', '.png')):
+    if not file.endswith(('.jpg', '.jpeg', '.png', '.heic', '.HEIC')):
         continue
-
-    result = reader.readtext(os.path.join(dir_path, file))
-    texts = [text for (_, text, _) in result]
+    try:
+        texts = read_text_apple_vision(os.path.join(dir_path, file))
+    except Exception as e:
+        print(f"⚠️ Failed, add manually: {os.path.join(dir_path, file)}")
+        continue
     print(f"\n{file}: {texts}")
 
     # Get brand name

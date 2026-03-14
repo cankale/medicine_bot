@@ -48,8 +48,8 @@ async def find(update: Update, context: ContextTypes.DEFAULT_TYPE):
     results = process.extract(query, choices, scorer=fuzz.partial_ratio, limit=3)
     
     output = ""
-    for match_str, score, idx in results:
-        if score > 40:
+    for _, score, idx in results:
+        if score > 80:
             row = df.iloc[idx]
             bbd = row['bbd'] if pd.notna(row['bbd']) and row['bbd'] != '' else 'Girilmedi'
             output += f"💊 {row['medicine']} (%{score:.2f} match)\n📋 {row['tanim']}\n🔢 Adet: {int(row['adet'])}\n📅 BBD: {bbd}\n\n"
