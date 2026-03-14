@@ -12,12 +12,19 @@ async def check(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     df = pd.read_csv(RAW_CSV_URL)
     name = context.args[0].lower()
-    found = df['medicine'].str.lower().eq(name).any()
+    match = df[df['medicine'].str.lower() == name]
 
-    if found:
-        await update.message.reply_text(f"✅ Yes, you have {context.args[0]}")
+    if not match.empty:
+        row = match.iloc[0]
+        bbd = row['bbd'] if pd.notna(row['bbd']) and row['bbd'] != '' else 'Girilmedi'
+        await update.message.reply_text(
+            f"💊 {row['medicine']}\n"
+            f"📋 {row['tanim']}\n"
+            f"🔢 Adet: {int(row['adet'])}\n"
+            f"📅 BBD: {bbd}"
+        )
     else:
-        await update.message.reply_text(f"❌ No, you don't have {context.args[0]}")
+        await update.message.reply_text("❌ Not found")
 
 app = ApplicationBuilder().token(os.environ.get("MEDICINE_BOT_API_KEY")).build()
 app.add_handler(CommandHandler("check", check))
